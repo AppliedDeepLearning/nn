@@ -12,7 +12,7 @@ def call_fn(fn, *arguments, **keywords):
 
 
 def to_dense(x):
-    return tf.argmax(x, axis=1) if x.shape[1] > 1 else x
+    return tf.argmax(x, axis=1) if len(x.shape) > 1 and x.shape[1] > 1 else x
 
 
 logger = logging.getLogger('nn')

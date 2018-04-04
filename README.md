@@ -1,4 +1,4 @@
-A neural network library with a high-level API built on top of TensorFlow. Most of the components are either tiny wrappers or aliases for the TensorFlow components and can be freely mixed with native TensorFlow code.
+A neural network library with a high-level API built on top of TensorFlow. Most of the components are either thin wrappers or aliases for the TensorFlow components and can be freely mixed with native TensorFlow code.
 
 
 <!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
@@ -108,6 +108,44 @@ model = nn.models.Classifier(
 
 ## Documentation
 
+### Model Function
+
+To have more control over the model, you may define the model using a function:
+
+```py
+import nn
+from nn.layers import Sequence, Dense
+import tensorflow as tf
+
+def model(features, labels, mode):
+    # Define the network architecture
+    outputs = Sequence([
+        Dense(50, activation=nn.relu),
+        Dense(10, activation=nn.sigmoid),
+    ])(features)
+    predictions = tf.argmax(outputs, axis=1)
+
+    # Configure the model parameters
+    loss = nn.losses.softmax_cross_entropy(labels, outputs)
+    optimizer = nn.optimizers.GradientDescent(0.01)
+    accuracy = nn.metrics.accuracy(labels, predictions)
+
+    return nn.models.spec(
+        mode=mode,
+        predictions=predictions,
+        loss=loss,
+        optimizer=optimizer,
+        metrics={'accuracy': accuracy})
+
+# Create the model using model function
+model = nn.models.Model(model)
+
+# Train the model
+model.train(x_train, y_train, num_epochs=30, batch_size=100)
+```
+
+`nn.models.spec` helper function creates a [`tf.estimator.EstimatorSpec`][tf.estimator.EstimatorSpec] object using `mode` and other parameters.
+
 ### Activations
 
 Aliases for [TensorFlow activation functions] are available at the package root. For example, `tf.nn.relu` is available as `nn.relu`.
@@ -141,10 +179,12 @@ Most of the `nn.metrics` are aliases for [`tf.metrics`][tf.metrics] except:
 
 ### Models
 
-`nn.models` are wrappers for [`tf.estimator.Estimator`][tf.estimator.Estimator].
+`nn.models` are wrappers for [`tf.estimator.Estimator`][tf.estimator.Estimator] and [`tf.estimator.EstimatorSpec`][tf.estimator.EstimatorSpec].
 
 - Classifier
 - Regressor
+- Model
+- spec
 
 ### Optimizers
 
@@ -168,4 +208,5 @@ The word `Optimizer` is excluded from all optimizer names. For example, `Gradien
 [tf.losses]: https://www.tensorflow.org/api_docs/python/tf/losses
 [tf.metrics]: https://www.tensorflow.org/api_docs/python/tf/metrics
 [tf.estimator.Estimator]: https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator
+[tf.estimator.EstimatorSpec]: https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec
 [TensorFlow optimizers]: https://www.tensorflow.org/api_guides/python/train#Optimizers
