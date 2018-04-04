@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='nn',
-    version='0.0.1',
+    version='0.0.2',
     description='A neural network library with a high-level API built on top of TensorFlow.',
     long_description=long_description,
     author='Ravindra Marella',

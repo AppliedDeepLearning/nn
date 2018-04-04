@@ -7,6 +7,7 @@ A neural network library with a high-level API built on top of TensorFlow. Most 
 - [Getting Started](#getting-started)
 	- [Example: CNN MNIST Classifier](#example-cnn-mnist-classifier)
 - [Documentation](#documentation)
+	- [Model Function](#model-function)
 	- [Activations](#activations)
 	- [Layers](#layers)
 	- [Losses](#losses)
