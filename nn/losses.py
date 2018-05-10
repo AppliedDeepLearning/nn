@@ -1,1 +1,1 @@
-from tensorflow.python.ops.losses.losses import *
+from train.losses import *

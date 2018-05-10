@@ -3,17 +3,20 @@ from setuptools import setup
 with open('README.md') as f:
     long_description = f.read()
 
+name = 'nn'
+
 setup(
-    name='nn',
+    name=name,
     version='0.0.2',
-    description='A neural network library with a high-level API built on top of TensorFlow.',
+    description=long_description.splitlines()[0],
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Ravindra Marella',
     author_email='mv.ravindra007@gmail.com',
-    url='https://marella.github.io/nn/',
+    url='https://github.com/AppliedDeepLearning/{}'.format(name),
     license='MIT',
-    packages=['nn'],
-    install_requires=['tensorflow'],
+    packages=[name],
+    install_requires=['train'],
     zip_safe=False,
     classifiers=[
         'Development Status :: 1 - Planning',
@@ -34,5 +37,5 @@ setup(
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    keywords='nn tensorflow neural networks deep learning machine learning artificial intelligence ml ai',
+    keywords='{} tensorflow neural-network deep-learning machine-learning'.format(name),
 )

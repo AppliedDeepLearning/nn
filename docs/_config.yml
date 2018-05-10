@@ -1,0 +1,24 @@
+permalink: pretty
+plugins:
+  - jekyll-sitemap
+
+remote_theme: marella/jekyll-theme-documentation
+title: NN
+nav:
+  - Getting Started:
+    - Introduction: ''
+  - Network:
+    - layers
+    - activations
+  - Models:
+    - model
+    - estimator
+  - Training:
+    - optimizers
+    - Decaying Learning Rate: decaying
+    - Gradient Clipping: clipping
+    - losses
+    - metrics
+  - More:
+    - datasets
+google_analytics: UA-27434500-19
