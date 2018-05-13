@@ -3,9 +3,9 @@ from .sparse import *
 from .recurrent import *
 
 import tensorflow as tf
-from train import training as is_training
 
 from .. import activations
+from ..train import training as is_training
 
 
 def _uses_activation(Layer, attributes=None):
