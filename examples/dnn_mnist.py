@@ -22,7 +22,6 @@ def model(x, params):
     x = nn.Dense(units=64, activation='relu')(x)
     x = nn.Dense(units=32, activation='relu')(x)
     outputs = nn.Dense(units=10)(x)
-
     # Compute predictions for prediction mode
     predictions = nn.tf.argmax(outputs, axis=1)
 

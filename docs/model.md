@@ -138,8 +138,8 @@ predictions = model(x, batch_size=128, **keywords)
 
 ## Next Steps
 
-- [Learn more about layers](./layers/)
-- [Learn more about optimizers](./optimizers/)
+- [Learn more about layers](../layers/)
+- [Learn more about optimizers](../optimizers/)
 
 
 [decorator syntax]: https://www.python.org/dev/peps/pep-0318/#current-syntax
