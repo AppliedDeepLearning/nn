@@ -15,8 +15,6 @@ nn.clip(fn_name, **kwargs)
 clip = nn.clip('value', clip_value_min=-5, clip_value_max=5)
 
 optimizer = nn.optimizer('GradientDescent', 0.001, clip=clip)
-
-nn.Model(network, optimizer=optimizer, ...)
 ```
 
 You can also use a custom function:
@@ -27,8 +25,6 @@ def custom_clip(values):
     return clipped_values
 
 optimizer = nn.optimizer('GradientDescent', 0.001, clip=custom_clip)
-
-nn.Model(network, optimizer=optimizer, ...)
 ```
 
 > **Note:** Order of values should remain same after clipping.

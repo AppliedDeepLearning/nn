@@ -15,8 +15,6 @@ nn.decay(fn_name, **kwargs)
 decay = nn.decay('exponential', decay_steps=1000, decay_rate=0.96)
 
 optimizer = nn.optimizer('GradientDescent', 0.001, decay=decay)
-
-nn.Model(network, optimizer=optimizer, ...)
 ```
 
 You can also use a custom function:
@@ -27,8 +25,6 @@ def custom_decay(learning_rate, global_step):
     return decayed_learning_rate
 
 optimizer = nn.optimizer('GradientDescent', 0.001, decay=custom_decay)
-
-nn.Model(network, optimizer=optimizer, ...)
 ```
 
 

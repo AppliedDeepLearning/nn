@@ -13,17 +13,18 @@ pip install nn
 ```py
 import nn
 
-# Define the network (layers, number of units, activations) as a function:
-def network(inputs):
+# Create the model
+@nn.model
+def model(inputs):
+    # Define the network architecture (layers, number of units, activations)
     hidden = nn.Dense(units=64, activation='relu')(inputs)
     outputs = nn.Dense(units=10)(hidden)
-    return outputs
 
-# Create a model by configuring its learning process (loss, optimizer, evaluation metrics):
-model = nn.Model(network,
-                 loss='softmax_cross_entropy',
-                 optimizer=('GradientDescent', 0.001),
-                 metrics=['accuracy'])
+    # Configure the learning process (loss, optimizer, evaluation metrics)
+    return dict(outputs=outputs,
+                loss='softmax_cross_entropy',
+                optimizer=('GradientDescent', 0.001),
+                metrics=['accuracy'])
 
 # Train the model using training data:
 model.train(x_train, y_train, epochs=30, batch_size=128)
@@ -38,7 +39,7 @@ predictions = model.predict(x)
 
 ## Documentation
 
-See [documentation][website].
+See [documentation].
 
 
 ## License
@@ -47,4 +48,4 @@ See [documentation][website].
 
 
 [license]: /LICENSE
-[website]: https://nn.applieddeeplearning.com/
+[documentation]: https://nn.applieddeeplearning.com/

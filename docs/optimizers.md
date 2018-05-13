@@ -8,19 +8,19 @@ Optimizer classes are available under `nn.optimizers`.
 To use an optimizer for a model, you can pass a tuple of optimizer name and learning rate as an argument:
 
 ```py
-nn.Model(network, optimizer=('GradientDescent', 0.001), ...)
+return dict(optimizer=('GradientDescent', 0.001), ...)
 ```
 
 Or pass an optimizer instance:
 
 ```py
-nn.Model(network, optimizer=nn.optimizers.GradientDescent(0.001), ...)
+return dict(optimizer=nn.optimizers.GradientDescent(0.001), ...)
 ```
 
 It is recommended to use the `nn.optimizer` utility function as it allows to specify more operations like [Decaying Learning Rate] and [Gradient Clipping]:
 
 ```py
-nn.Model(network, optimizer=nn.optimizer('GradientDescent', 0.001), ...)
+return dict(optimizer=nn.optimizer('GradientDescent', 0.001), ...)
 ```
 
 It has the following signature:
@@ -39,7 +39,8 @@ def custom_optimizer(loss, global_step):
     train_op = optimizer.minimize(loss=loss, global_step=global_step)
     return train_op
 
-nn.Model(network, optimizer=custom_optimizer, ...)
+# Inside model
+return dict(optimizer=custom_optimizer, ...)
 ```
 
 Inside this custom function, you can specify other operations like decaying learning rate and gradient clipping.

@@ -8,13 +8,13 @@ Metric functions are available under `nn.metrics`.
 `nn.Model` expects a `list` or `dict` of metrics. To use a metric function for a model, you can pass its name as an argument:
 
 ```py
-nn.Model(network, metrics=['accuracy'], ...)
+return dict(metrics=['accuracy'], ...)
 ```
 
 Or pass a metric function:
 
 ```py
-nn.Model(network, metrics=[nn.metrics.accuracy], ...)
+return dict(metrics=[nn.metrics.accuracy], ...)
 ```
 
 You can also use a custom function:
@@ -24,13 +24,14 @@ def custom_metric(labels, outputs):
     # Compute metric
     return metric
 
-nn.Model(network, metrics=['accuracy', custom_metric], ...)
+# Inside model
+return dict(metrics=['accuracy', custom_metric], ...)
 ```
 
 To give a custom name for each metric, pass a `dict` of metrics with keys as metric names and values as metric functions:
 
 ```py
-nn.Model(network, metrics={'my_metric': custom_metric}, ...)
+return dict(metrics={'acc': 'accuracy', 'my_metric': custom_metric}, ...)
 ```
 
 

@@ -71,7 +71,7 @@ nn.RNN(cell, return_sequences=False, return_state=False, **kwargs)
 ### Example
 
 ```py
-def network(x):
+def model(x):
     # Create layers
     embedding = nn.Embedding(10000, 300)
     cell = nn.LSTMCell(128)
@@ -80,7 +80,7 @@ def network(x):
     sequence_length = nn.sequence.length(x)  # required for variable length sequences
     x = embedding(x)
     x = rnn(x, sequence_length=sequence_length)
-    return x
+    ...
 ```
 
 ## Sparse Layers

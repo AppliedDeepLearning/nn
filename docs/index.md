@@ -27,32 +27,27 @@ Import the package:
 import nn
 ```
 
-Define the network (layers, number of units, activations) as a function:
-
+Create the model:
 ```py
-def network(inputs):
+@nn.model
+def model(inputs):
+    # Define the network architecture (layers, number of units, activations)
     hidden = nn.Dense(units=64, activation='relu')(inputs)
     outputs = nn.Dense(units=10)(hidden)
-    return outputs
-```
 
-Create a model by configuring its learning process (loss, optimizer, evaluation metrics):
-
-```py
-model = nn.Model(network,
-                 loss='softmax_cross_entropy',
-                 optimizer=('GradientDescent', 0.001),
-                 metrics=['accuracy'])
+    # Configure the learning process (loss, optimizer, evaluation metrics)
+    return dict(outputs=outputs,
+                loss='softmax_cross_entropy',
+                optimizer=('GradientDescent', 0.001),
+                metrics=['accuracy'])
 ```
 
 Save/load model parameters, training progress etc. by specifying a model directory:
 
 ```py
-model = nn.Model(network,
-                 loss='softmax_cross_entropy',
-                 optimizer=('GradientDescent', 0.001),
-                 metrics=['accuracy'],
-                 model_dir='/tmp/my_model')
+@nn.model(model_dir='/tmp/my_model')
+def model(inputs):
+    ...
 ```
 
 Train the model using training data:
@@ -78,7 +73,7 @@ predictions = model(x)
 
 ## Next Steps
 
-- [Learn more about `nn.Model`](./model/)
+- [Learn more about models](./model/)
 - [Learn more about layers](./layers/)
 - [Learn more about optimizers](./optimizers/)
 

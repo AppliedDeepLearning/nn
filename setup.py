@@ -21,7 +21,7 @@ setup(
     },
     license='MIT',
     packages=[name],
-    install_requires=['train'],
+    install_requires=[],
     zip_safe=False,
     classifiers=[
         'Development Status :: 1 - Planning',

@@ -7,12 +7,10 @@ title: NN
 nav:
   - Getting Started:
     - Introduction: ''
+    - model
   - Network:
     - layers
     - activations
-  - Models:
-    - model
-    - estimator
   - Training:
     - optimizers
     - Decaying Learning Rate: decaying
