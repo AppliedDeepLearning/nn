@@ -12,3 +12,7 @@ from . import layers
 from . import losses
 from . import metrics
 from . import optimizers
+from . import sequence
+
+from . import np
+from . import tf

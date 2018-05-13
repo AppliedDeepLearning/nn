@@ -1,8 +1,11 @@
 from tensorflow.python.layers.layers import *
+from .sparse import *
+from .recurrent import *
+
 import tensorflow as tf
 from train import training as is_training
 
-from . import activations
+from .. import activations
 
 
 def _uses_activation(Layer, attributes=None):
@@ -129,4 +132,20 @@ __all__ = [
     'MaxPooling3D',
     'SeparableConv1D',
     'SeparableConv2D',
+
+    # Recurrent
+    'RNN',
+    'BasicLSTMCell',
+    'BasicRNNCell',
+    'DeviceWrapper',
+    'DropoutWrapper',
+    'GRUCell',
+    'LSTMCell',
+    'LSTMStateTuple',
+    'MultiRNNCell',
+    'RNNCell',
+    'ResidualWrapper',
+
+    # Sparse
+    'Embedding',
 ]

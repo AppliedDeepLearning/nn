@@ -14,6 +14,11 @@ setup(
     author='Ravindra Marella',
     author_email='mv.ravindra007@gmail.com',
     url='https://github.com/AppliedDeepLearning/{}'.format(name),
+    project_urls={
+        'Documentation': 'https://nn.applieddeeplearning.com/',
+        'Source Code': 'https://github.com/AppliedDeepLearning/{}'.format(name),
+        'Bug Tracker': 'https://github.com/AppliedDeepLearning/{}/issues'.format(name),
+    },
     license='MIT',
     packages=[name],
     install_requires=['train'],

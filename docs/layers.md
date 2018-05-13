@@ -48,6 +48,52 @@ outputs = nn.Dense(units=64, activation='relu')(inputs)
 - `MaxPooling3D`
 
 
+## Recurrent Layers
+
+- `RNN`
+- `BasicLSTMCell`
+- `BasicRNNCell`
+- `DeviceWrapper`
+- `DropoutWrapper`
+- `GRUCell`
+- `LSTMCell`
+- `LSTMStateTuple`
+- `MultiRNNCell`
+- `RNNCell`
+- `ResidualWrapper`
+
+### RNN
+
+```py
+nn.RNN(cell, return_sequences=False, return_state=False, **kwargs)
+```
+
+### Example
+
+```py
+def network(x):
+    # Create layers
+    embedding = nn.Embedding(10000, 300)
+    cell = nn.LSTMCell(128)
+    rnn = nn.RNN(cell)
+    # Connect layers
+    sequence_length = nn.sequence.length(x)  # required for variable length sequences
+    x = embedding(x)
+    x = rnn(x, sequence_length=sequence_length)
+    return x
+```
+
+## Sparse Layers
+
+- `Embedding`
+
+### Embedding
+
+```py
+nn.Embedding(input_dim, output_dim, embeddings_initializer=None, embeddings_regularizer=None, embeddings_constraint=None, dtype=tf.float32, **kwargs)
+```
+
+
 ## Normalization Layers
 
 - `BatchNormalization`
@@ -56,3 +102,4 @@ outputs = nn.Dense(units=64, activation='relu')(inputs)
 ## See Also
 
 - [TensorFlow Layers](https://www.tensorflow.org/api_docs/python/tf/layers#classes){:target="_blank"}
+- [TensorFlow RNN Cells](https://www.tensorflow.org/api_docs/python/tf/nn/rnn_cell#classes){:target="_blank"}
