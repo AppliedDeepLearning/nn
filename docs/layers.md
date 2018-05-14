@@ -65,10 +65,10 @@ outputs = nn.Dense(units=64, activation='relu')(inputs)
 ### RNN
 
 ```py
-nn.RNN(cell, return_sequences=False, return_state=False, **kwargs)
+nn.RNN(cell, cell_b=None, return_sequences=False, return_state=False, merge_mode='concat', **kwargs)
 ```
 
-### Example
+Example:
 
 ```py
 def model(x):
@@ -79,9 +79,20 @@ def model(x):
     # Connect layers
     sequence_length = nn.sequence.length(x)  # required for variable length sequences
     x = embedding(x)
-    x = rnn(x, sequence_length=sequence_length)
+    x = rnn(x, sequence_length)
     ...
 ```
+
+To create a bidirectional RNN, simply pass a second cell for the backward RNN:
+
+```py
+cell_b = nn.LSTMCell(128)
+bidirectional = nn.RNN(cell, cell_b)
+outputs = bidirectional(inputs, sequence_length)
+```
+
+If `merge_mode` is `None`, `outputs` will be a tuple of forward and backward outputs.
+
 
 ## Sparse Layers
 
