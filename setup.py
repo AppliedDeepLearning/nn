@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open('README.md') as f:
     long_description = f.read()
@@ -7,7 +7,7 @@ name = 'nn'
 
 setup(
     name=name,
-    version='0.0.7',
+    version='0.0.8',
     description=long_description.splitlines()[0],
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -20,7 +20,7 @@ setup(
         'Bug Tracker': 'https://github.com/AppliedDeepLearning/{}/issues'.format(name),
     },
     license='MIT',
-    packages=[name],
+    packages=find_packages(),
     install_requires=[],
     zip_safe=False,
     classifiers=[
