@@ -42,9 +42,14 @@ def call_fn(fn, *args, **keywords):
     return fn(*args, **kwargs)
 
 
-def cli(**keywords):
+def cli(**kwargs):
     parser = argparse.ArgumentParser()
-    for name, value in keywords.items():
+    for name, value in kwargs.items():
         type_ = None if value is None else type(value)
-        parser.add_argument('--' + name, default=value, type=type_)
+        if isinstance(value, bool):
+            parser.add_argument('--' + name, dest=name, action='store_true')
+            parser.add_argument('--not-' + name, dest=name, action='store_false')
+        else:
+            parser.add_argument('--' + name, type=type_)
+    parser.set_defaults(**kwargs)
     return parser.parse_args()

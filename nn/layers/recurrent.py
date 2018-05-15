@@ -12,16 +12,6 @@ def get_last_output(outputs, sequence_length):
     return outputs
 
 
-def get_last_outputs(outputs, sequence_length):
-    is_tuple = isinstance(outputs, tuple)
-    if not is_tuple:
-        outputs = outputs,
-    outputs = tuple(get_last_output(output, sequence_length) for output in outputs)
-    if not is_tuple:
-        outputs = outputs[0]
-    return outputs
-
-
 class RNN(tf.layers.Layer):
 
     def __init__(self, cell, cell_b=None, return_sequences=False, return_state=False, merge_mode='concat', **kwargs):
@@ -43,7 +33,13 @@ class RNN(tf.layers.Layer):
                           if self._bidirectional else tf.nn.dynamic_rnn(self.cell, **kwargs))
 
         if not self.return_sequences:
-            outputs = get_last_outputs(outputs, sequence_length)
+            if self._bidirectional:
+                outputs_fw, outputs_bw = outputs
+                outputs_fw = get_last_output(outputs_fw, sequence_length)
+                outputs_bw = outputs_bw[:, 0, :]
+                outputs = outputs_fw, outputs_bw
+            else:
+                outputs = get_last_output(outputs, sequence_length)
 
         if self._bidirectional:
             if self.merge_mode is 'concat':
