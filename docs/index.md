@@ -45,7 +45,7 @@ def model(inputs):
 Save/load model parameters, training progress etc. by specifying a model directory:
 
 ```py
-@nn.model(model_dir='/tmp/my_model')
+@nn.model(directory='/tmp/my_model')
 def model(inputs):
     ...
 ```

@@ -52,8 +52,10 @@ class Model():
             self.compile()
         return self._estimator
 
-    def _create_estimator(self, model_fn, model_dir=None, params=None, **kwargs):
+    def _create_estimator(self, model_fn, directory=None, model_dir=None, params=None, **kwargs):
         defaults = self._defaults()
+        if model_dir is None:
+            model_dir = directory
         if model_dir is None:
             model_dir = defaults.get('model_dir')
             shutil.rmtree(model_dir, ignore_errors=True)

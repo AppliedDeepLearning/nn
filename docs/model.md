@@ -69,10 +69,10 @@ model = nn.Model(model)
 Save/load model parameters, training progress etc. by specifying a model directory:
 
 ```py
-model = nn.Model(model, model_dir='/tmp/my_model')
+model = nn.Model(model, directory='/tmp/my_model')
 ```
 
-If `model_dir` is not specified, a temporary folder is used.
+If `directory` is not specified, a temporary folder is used.
 
 ### Decorator Syntax
 
@@ -96,7 +96,7 @@ model = nn.Model(model)
 You can also pass keyword arguments to the decorator function:
 
 ```py
-@nn.model(model_dir='/tmp/my_model')
+@nn.model(directory='/tmp/my_model')
 def model(inputs):
     ...
 ```
@@ -107,7 +107,7 @@ which is equivalent to:
 def model(inputs):
     ...
 
-model = nn.Model(model, model_dir='/tmp/my_model')
+model = nn.Model(model, directory='/tmp/my_model')
 ```
 
 
