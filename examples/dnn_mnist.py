@@ -4,7 +4,7 @@ import nn
 args = nn.cli(learning_rate=0.001,
               epochs=30,
               batch_size=128,
-              model_dir=None)
+              directory=None)
 
 # Prepare data
 (x_train, y_train), (x_test, y_test) = nn.datasets.mnist.load_data()
@@ -15,7 +15,7 @@ y_test = nn.np.asarray(y_test, dtype='int')
 
 
 # Create the model
-@nn.model(model_dir=args.model_dir, params=vars(args))
+@nn.model(directory=args.directory, params=vars(args))
 def model(x, params):
     # Define the network architecture
     x = nn.Flatten()(x)
