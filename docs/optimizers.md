@@ -72,4 +72,4 @@ Inside this custom function, you can specify other operations like decaying lear
 
 
 [Decaying Learning Rate]: ../decaying/
-[Gradient Clipping]: ../clipping
+[Gradient Clipping]: ../clipping/
