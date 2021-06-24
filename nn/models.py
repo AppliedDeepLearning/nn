@@ -111,7 +111,7 @@ def spec(mode, labels=None, outputs=None, predictions=None, loss=None, optimizer
     if mode == modes.PREDICT:
         return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions, **kwargs)
 
-    loss = create_loss_op(loss, labels, outputs)
+    loss = create_loss(loss, labels, outputs)
 
     if mode == modes.TRAIN:
         train_op = create_train_op(optimizer, loss)
@@ -121,8 +121,8 @@ def spec(mode, labels=None, outputs=None, predictions=None, loss=None, optimizer
     return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=metrics, **kwargs)
 
 
-def create_loss_op(loss, labels, outputs):
-    if isinstance(loss, tf.Operation):
+def create_loss(loss, labels, outputs):
+    if isinstance(loss, tf.Tensor):
         return loss
     if isinstance(loss, str):
         loss = getattr(losses, loss)
